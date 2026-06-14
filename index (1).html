@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Welcome{% endblock %}
+{% block content %}
+<div class="hero">
+  <h1>Banking, <span>Simplified.</span></h1>
+  <p>Open an account, deposit, withdraw, and transfer — all in one place.</p>
+  <div class="hero-btns">
+    <a href="{{ url_for('register') }}" class="btn btn-gold">Open Account</a>
+    <a href="{{ url_for('login') }}" class="btn btn-primary">Login</a>
+  </div>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem;">
+  {% for icon, title, desc in [
+    ('🏦','Secure Accounts','Your data is safely stored with account-level authentication.'),
+    ('💸','Instant Transfers','Transfer funds between accounts in real time.'),
+    ('📋','Full History','Every transaction logged with date and time.')
+  ] %}
+  <div class="card" style="text-align:center;">
+    <div style="font-size:2rem;">{{ icon }}</div>
+    <div style="font-weight:700;margin:.5rem 0 .3rem;">{{ title }}</div>
+    <div style="color:#6b7280;font-size:.88rem;">{{ desc }}</div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

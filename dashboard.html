@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+
+<div class="balance-hero">
+  <div class="label">Available Balance</div>
+  <div class="amount">₹{{ "%.2f"|format(acc.balance) }}</div>
+  <div class="acc-info">{{ acc.holder_name }} &nbsp;·&nbsp; {{ acc.account_number }}</div>
+</div>
+
+<div class="action-grid">
+  <a href="{{ url_for('deposit') }}" class="action-btn"><span class="icon">⬇️</span>Deposit</a>
+  <a href="{{ url_for('withdraw') }}" class="action-btn"><span class="icon">⬆️</span>Withdraw</a>
+  <a href="{{ url_for('transfer') }}" class="action-btn"><span class="icon">🔁</span>Transfer</a>
+</div>
+
+<div class="card">
+  <div class="card-title">Recent Transactions</div>
+  {% if recent %}
+  <table>
+    <thead><tr><th>Type</th><th>Amount</th><th>Balance After</th><th>Date & Time</th></tr></thead>
+    <tbody>
+    {% for t in recent %}
+      <tr>
+        <td>
+          {% if 'Deposit' in t.txn_type or 'Transfer from' in t.txn_type %}
+            <span class="badge badge-in">{{ t.txn_type }}</span>
+          {% else %}
+            <span class="badge badge-out">{{ t.txn_type }}</span>
+          {% endif %}
+        </td>
+        <td><strong>₹{{ "%.2f"|format(t.amount) }}</strong></td>
+        <td>₹{{ "%.2f"|format(t.balance_after) }}</td>
+        <td style="color:#6b7280;">{{ t.timestamp }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  <a href="{{ url_for('history') }}" style="display:inline-block;margin-top:1rem;font-size:.88rem;color:#1a3a6b;">View all transactions →</a>
+  {% else %}
+    <p style="color:#6b7280;font-size:.9rem;">No transactions yet. Make your first deposit!</p>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<div class="card" style="max-width:440px;margin:auto;">
+  <div class="card-title">Login to Your Account</div>
+  <form method="POST">
+    <label>Account Number</label>
+    <input type="text" name="acc_no" placeholder="e.g. ACC1001" required>
+    <label>Password</label>
+    <input type="password" name="password" placeholder="Your password" required>
+    <button type="submit" class="btn btn-primary mt" style="width:100%;">Login</button>
+  </form>
+  <p style="margin-top:1rem;font-size:.88rem;color:#6b7280;">New here? <a href="{{ url_for('register') }}" style="color:#1a3a6b;">Open an account</a></p>
+</div>
+{% endblock %}

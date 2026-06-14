@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Open Account{% endblock %}
+{% block content %}
+<div class="card" style="max-width:440px;margin:auto;">
+  <div class="card-title">Open a New Account</div>
+  <form method="POST">
+    <label>Full Name</label>
+    <input type="text" name="name" placeholder="e.g. Rahul Sharma" required>
+    <label>Password</label>
+    <input type="password" name="password" placeholder="Choose a strong password" required>
+    <label>Initial Deposit (₹) — Optional</label>
+    <input type="number" name="initial" placeholder="0.00" min="0" step="0.01">
+    <button type="submit" class="btn btn-primary mt" style="width:100%;">Create Account</button>
+  </form>
+  <p style="margin-top:1rem;font-size:.88rem;color:#6b7280;">Already have an account? <a href="{{ url_for('login') }}" style="color:#1a3a6b;">Login</a></p>
+</div>
+{% endblock %}
