@@ -1,4 +1,4 @@
-# 🏦 NovBank – Bank Management System
+# 🏦 Bank Management System
 
 A full-stack Bank Management System built with **Python (OOP)**, **Flask**, and **HTML/CSS**.
 
